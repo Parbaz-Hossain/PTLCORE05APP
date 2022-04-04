@@ -1,4 +1,5 @@
-﻿using CORE05WebApp.Models;
+﻿using CORE05.DataAccess.Data;
+using CORE05.Models;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -9,8 +10,8 @@ namespace CORE05WebApp.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly EMPLOYEEDBContext _db;
-        public EmployeeController(EMPLOYEEDBContext db)
+        private readonly ApplicationDBContext _db;
+        public EmployeeController(ApplicationDBContext db)
         {
             _db=db;
         }
@@ -23,6 +24,10 @@ namespace CORE05WebApp.Controllers
         [HttpGet]
         public IActionResult Create()
         {
+            List<Districtinf> disList = new List<Districtinf>();
+            disList = (from c in _db.Districtinfs select c).ToList();
+            disList.Insert(0, new Districtinf { Id = 0, District = "--Select District Name--" });
+            ViewBag.message = disList;
             return View();
         }
 

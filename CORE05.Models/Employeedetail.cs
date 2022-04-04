@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 #nullable disable
 
-namespace CORE05WebApp.Models
+namespace CORE05.Models
 {
     public partial class Employeedetail
     {

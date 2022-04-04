@@ -1,6 +1,6 @@
-﻿@model CORE05WebApp.Models.Employeedetail
-@{ 
-    ViewData["Title"]="New Employee";
+﻿@model CORE05.Models.Employeedetail
+@{
+    ViewData["Title"] = "New Employee";
 }
 <form method="post" asp-action="Create">
     <div class="border p-3">
@@ -14,82 +14,71 @@
                     <input asp-for="Employeeid" class="form-control" />
                     <span asp-validation-for="Employeeid" class="text-danger"></span>
                 </div>
-               
+
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label asp-for="Employeeid"></label> 
-                    <input asp-for="Employeeid" class="form-control" />
-                    <span asp-validation-for="Employeeid" class="text-danger"></span>
+                    <label asp-for="Employeename"></label>
+                    <input asp-for="Employeename" class="form-control" />
+                    <span asp-validation-for="Employeename" class="text-danger"></span>
                 </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label asp-for="Employeename"></label>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Joiningdate"></label>
+                    <input type="datetime" asp-for="Joiningdate" asp-format="{0:yyyy-MM-dd}" class="form-control" />
+                </div>
             </div>
-            <div class="col-8">
-                <input asp-for="Employeename" class="form-control" />
-                <span asp-validation-for="Employeename" class="text-danger"></span>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label asp-for="Joiningdate"></label>
-            </div>
-            <div class="col-8">
-                <input asp-for="Joiningdate" class="form-control" />
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Gender"></label>
+                    <input type="radio" asp-for="Gender" name="Gender" value="Male" checked  />
+                    <input type="radio" asp-for="Gender" name="Gender" value="Female"  />
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label asp-for="Gender"></label>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="District"></label>
+                    <select asp-for="District" asp-items="@(new SelectList(ViewBag.message,"Id","District"))" class="form-control"></select>  
+                </div>
             </div>
-            <div class="col-8">
-                <input type="radio" asp-for="Gender" class="form-control" value="Male" />
-                <input type="radio" asp-for="Gender" class="form-control" value="Female" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label asp-for="District"></label>
-            </div>
-            <div class="col-8">
-                <select asp-for="District" class="form-control"></select>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Active"></label>
+                    <input type="checkbox" asp-for="Active" />
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label asp-for="Active"></label>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <input type="image" asp-for="Image" />
+                </div>
             </div>
-            <div class="col-8">
-                <input type="checkbox" asp-for="Active" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label asp-for="Image"></label>
-            </div>
-            <div class="col-8">
-                <input type="image" asp-for="Image" />
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Salary"></label>
+                    <input type="number" asp-for="Salary" class="form-control" />
+                </div>
             </div>
         </div>
         <div class="row">
-            <div class="col-2">
-                <label asp-for="Salary"></label>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Address"></label>
+                    <input type="text" asp-for="Address" class="form-control" />
+                </div>
             </div>
-            <div class="col-8">
-                <input type="number" asp-for="Salary" />
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-2">
-                <label asp-for="Address"></label>
-            </div>
-            <div class="col-8">
-                <input type="text" asp-for="Address" />
+            <div class="col-6">
+                <div class="form-group"></div>
             </div>
         </div>
+
         <div class="col-12">
             <div class="form-group row">
                 <div class="col-8 offset-2 row">

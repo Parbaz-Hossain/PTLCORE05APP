@@ -1,4 +1,4 @@
-using CORE05WebApp.Models;
+using CORE05.DataAccess.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +24,7 @@ namespace CORE05WebApp
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<EMPLOYEEDBContext>(options => 
+            services.AddDbContext<ApplicationDBContext>(options => 
             options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection"))
             );
             services.AddControllersWithViews();
