@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
 #nullable disable
 
@@ -9,6 +10,9 @@ namespace CORE05.Models
     {
         public int Id { get; set; }
         public string Employeeid { get; set; }
+        [Required]
+        [StringLength(255)]
+        [Display(Name ="Employee Name")]
         public string Employeename { get; set; }
         public DateTime Joiningdate { get; set; }
         public string Gender { get; set; }

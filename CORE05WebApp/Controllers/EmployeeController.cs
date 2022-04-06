@@ -28,6 +28,12 @@ namespace CORE05WebApp.Controllers
             disList = (from c in _db.Districtinfs select c).ToList();
             disList.Insert(0, new Districtinf { Id = 0, District = "--Select District Name--" });
             ViewBag.message = disList;
+
+            List<Hobbiesinf> hobbList = new List<Hobbiesinf>();
+            hobbList = (from c in _db.Hobbiesinfs select c).ToList();
+            hobbList.Insert(0, new Hobbiesinf { Id = 0, Hobbies = "--Select Hobbies--" });
+            ViewBag.message1 = hobbList;
+
             return View();
         }
 
@@ -41,11 +47,11 @@ namespace CORE05WebApp.Controllers
                 bool isChanged = Convert.ToBoolean(_db.SaveChanges());
                 if(isChanged)
                 {
-                    ViewBag.Message = "Employee Inserted Successfully";
+                    TempData["success"] = "Employee Inserted Successfully";
                 }
                 else
                 {
-                    ViewBag.Message = "Employee Inserted Failded!";
+                    TempData["error"] = "Employee Inserted Failded!";
                 }
                 return RedirectToAction("Index");
             }

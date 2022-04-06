@@ -10,26 +10,27 @@
     <title>Index</title>
 </head>
 <body>
-    <div class="row d-flex">
-        <h3>Employee Details</h3>
-        <h4 class="justify-content-end"><a asp-controller="Employee" asp-action="Create" class="btn btn-success mx-1">Create New Employee</a></h4>
+ 
+    <div class="row">
+        <div class="col-6"><h3>Employee Details</h3></div>
+        <div class="col-6"><a asp-controller="Employee" asp-action="Create" class="btn btn-success float-right">Create New Employee</a></div>       
     </div>
    
     @if (Model.Count()>0)
     {
         <table class="table table-bordered table-striped" style="width:100%">
-            <thead>
-                <tr>
+            <thead class="bg-dark text-light">
+                <tr class="text-center">
                     <th>Employee ID</th>
                     <th>Employee Name</th>
                     <th>Joining Date</th>
                     <th>Gender</th>
-                    <th>District ID</th>
+                    <th>District</th>
                     <th>Address</th>
                     <th>Active</th>
                     <th>Image</th>
                     <th>Salary</th>
-                    <th>Hobbies ID</th>
+                    <th>Hobbies</th>
                     <th class="text-center">Actions</th>
                 </tr>
             </thead>
@@ -45,7 +46,7 @@
                     <td width="10%">@employee.Address</td>
                     <td width="10%">@employee.Active</td>
                     <td width="10%">@employee.Image</td>
-                    <td width="10%">@employee.Salary</td>
+                    <td width="10%">@employee.Salary.ToString("#,##0.00;(#,##0.00); ")</td>
                     <td width="10%">@employee.Hobbiesid</td>
                     <td width="20%">
                         <div class="w-100 btn-group" role="group">

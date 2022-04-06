@@ -1,0 +1,23 @@
+﻿@*Partial View for showing notification*@
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+@*Success Toast*@
+@if (TempData["success"] != null)
+{
+    <script type="text/javascript">
+        toastr.success('','@TempData["success"]',{
+            closeButton:true,
+            progressBar:true
+        });
+    </script>
+}
+@*Error Toast*@
+@if(TempData["error"]!=null)
+{
+    <script type="text/javascript">
+        toastr.error('','@TempData["error"]',{
+            closeButton:true,
+            progressBar:true
+        })j;
+    </script>
+}
