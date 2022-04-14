@@ -23,10 +23,11 @@ namespace CORE05WebApp.Controllers
         }
         public IActionResult Index()
         {
-            List<Employeedetail> objList = new List<Employeedetail>();
-           // IEnumerable<Employeedetail> objList = _db.Employeedetails.Include(x => x.District);
+            //List<Employeedetail> empDetList = new List<Employeedetail>(); //List
+            List<EmployeedetailVM> empVMList = new List<EmployeedetailVM>();
+            IEnumerable<Employeedetail> empDetList = _db.Employeedetails.Include(x => x.District); //IEnumerable
 
-            foreach (var item in objList)
+            foreach (var item in empDetList)
             {
                 List<Hobbiesinf> hobbList = new List<Hobbiesinf>();
                 hobbList = _db.Hobbiesinfs.ToList();
@@ -40,7 +41,25 @@ namespace CORE05WebApp.Controllers
 
                 }
             }
-            return View(objList.ToList());
+
+            foreach (var item in empDetList)
+            {
+                EmployeedetailVM employeeVM = new EmployeedetailVM(); //VeiwModel Object
+                employeeVM.Employeeid = item.Employeeid;
+                employeeVM.Employeename = item.Employeename;
+                employeeVM.Joiningdate = item.Joiningdate;
+                employeeVM.Gender = item.Gender;
+                employeeVM.Districtid = item.Districtid;
+                employeeVM.District = item.District;
+                employeeVM.Active = item.Active;
+                employeeVM.Salary =item.Salary;
+                employeeVM.Hobbiesid=item.Hobbiesid;
+                employeeVM.hobbiesName=item.hobbiesName;
+                employeeVM.Address=item.Address;
+                empVMList.Add(employeeVM);
+            }
+
+            return View(empVMList);
         }
 
         [HttpGet]

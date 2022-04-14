@@ -36,7 +36,6 @@ namespace CORE05.ViewModel
         public string Address { get; set; }
         public IFormFile ProfileImage { get; set; }
 
-        [ForeignKey("Districtid")]
         public virtual Districtinf District { get; set; }
     }
 }
