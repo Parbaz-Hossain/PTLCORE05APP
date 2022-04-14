@@ -2,7 +2,7 @@
 @{
     ViewData["Title"] = "New Employee";
 }
-<form method="post" asp-action="Create">
+<form method="post" asp-action="Create" enctype="multipart/form-data">
     <div class="border p-3">
         <div class="form-group row">
             <h2 class="text-black-50 pl-3">Add New Employee</h2>
@@ -12,6 +12,7 @@
                 <div class="form-group">
                     <label asp-for="Employeeid">Employee ID</label>
                     <input asp-for="Employeeid" class="form-control" />
+                    <input asp-for="Id" class="form-control d-none" />
                     <span asp-validation-for="Employeeid" class="text-danger"></span>
                 </div>
 
@@ -27,8 +28,8 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label asp-for="Joiningdate">Joining Date</label>
-                    <input type="datetime" asp-for="Joiningdate" asp-format="{dd:MMM:yyyy}" class="form-control" />
+                    <label>Joining Date</label>
+                    <input asp-for="Joiningdate" class="form-control" />
                 </div>
             </div>
             <div class="col-6">
@@ -70,8 +71,23 @@
         <div class="row">
             <div class="col-6">
                 <div class="form-group">
-                    <label asp-for="Hobbiesid">Hobbies</label>
-                    <select asp-for="Hobbiesid" asp-items="@(new SelectList(ViewBag.message1,"Id","Hobbies"))" class="form-control"></select>
+                    <label asp-for="hobbiesArr"></label>
+                    <select asp-for="hobbiesArr" asp-items="@(new SelectList(ViewBag.message1,"Id","Hobbies"))" class="form-control" multiple></select>
+                </div>
+            </div>
+            <div class="col-6">
+                <div class="form-group">
+                    <label asp-for="Image"></label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
+                        </div>
+                        <div class="custom-file">
+                            <input type="file" asp-for="Image" class="custom-file-input" id="inputGroupFile01"
+                                   aria-describedby="inputGroupFileAddon01">
+                            <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

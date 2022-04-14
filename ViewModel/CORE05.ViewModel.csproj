@@ -8,4 +8,8 @@
     <PackageReference Include="Microsoft.AspNetCore.Http" Version="2.2.2" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CORE05.Models\CORE05.Models.csproj" />
+  </ItemGroup>
+
 </Project>

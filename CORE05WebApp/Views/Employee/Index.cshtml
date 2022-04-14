@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CORE05.Models.Employeedetail>
+﻿@model IEnumerable<CORE05.ViewModel.EmployeedetailVM>
 @{
     ViewData["Title"] = "Employee Details";
 }
@@ -42,16 +42,16 @@
                     <td width="30%">@employee.Employeename</td>
                     <td width="10%">@employee.Joiningdate.ToString("dd-MMM-yyyy")</td>
                     <td width="20%">@employee.Gender</td>
-                    <td width="10%">@employee.Districtid</td>
+                    <td width="10%">@employee.District.District</td>
                     <td width="10%">@employee.Address</td>
                     <td width="10%">@employee.Active</td>
-                    <td width="10%">@employee.Image</td>
+                    <td width="10%"><img src="~/ProfileImages/@employee.ProfileImage" class="rounded-circle" width="40" height="40" asp-append-version="true" /></td>
                     <td width="10%">@employee.Salary.ToString("#,##0.00;(#,##0.00); ")</td>
-                    <td width="10%">@employee.Hobbiesid</td>
+                    <td width="10%">@employee.hobbiesName</td>
                     <td width="20%">
                         <div class="w-100 btn-group" role="group">
-                            <a asp-controller="Employee" asp-action="Update" asp-route-id="@employee.Employeeid" class="btn btn-primary mx-1">Update</a>
-                            <a asp-controller="Employee" asp-action="Delete" asp-route-id="@employee.Employeeid" class="btn btn-danger mx-1">Delete</a>
+                            <a asp-controller="Employee" asp-action="Create" asp-route-EmpId="@employee.Id" class="btn btn-primary mx-1">Update</a>
+                            <a asp-controller="Employee" asp-action="Delete" asp-route-EmpId="@employee.Id" class="btn btn-danger mx-1">Delete</a>
                         </div>
                     </td>
                 </tr>
