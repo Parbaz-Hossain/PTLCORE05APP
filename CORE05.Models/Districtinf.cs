@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 #nullable disable
 
@@ -14,7 +15,7 @@ namespace CORE05.Models
 
         public int Id { get; set; }
         public string District { get; set; }
-
+        
         public virtual ICollection<Employeedetail> Employeedetails { get; set; }
     }
 }
