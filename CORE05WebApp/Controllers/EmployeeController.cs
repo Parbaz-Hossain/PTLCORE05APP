@@ -18,7 +18,7 @@ namespace CORE05WebApp.Controllers
         private IWebHostEnvironment _webHostEnvironment;
         public EmployeeController(ApplicationDBContext db, IWebHostEnvironment webHostEnvironment)
         {
-            _db=db;
+            _db = db;
             _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
@@ -34,9 +34,9 @@ namespace CORE05WebApp.Controllers
 
                 foreach (var hItem in item.Hobbiesid.Split(","))
                 {
-                    if (hItem !="")
+                    if (hItem != "")
                     {
-                        item.hobbiesName+= hobbList.Where(x => x.Id.ToString()==hItem).FirstOrDefault().Hobbies+",";
+                        item.hobbiesName += hobbList.Where(x => x.Id.ToString() == hItem).FirstOrDefault().Hobbies + ",";
                     }
 
                 }
@@ -52,10 +52,11 @@ namespace CORE05WebApp.Controllers
                 employeeVM.Districtid = item.Districtid;
                 employeeVM.District = item.District;
                 employeeVM.Active = item.Active;
-                employeeVM.Salary =item.Salary;
-                employeeVM.Hobbiesid=item.Hobbiesid;
-                employeeVM.hobbiesName=item.hobbiesName;
-                employeeVM.Address=item.Address;
+                employeeVM.Salary = item.Salary;
+                employeeVM.Hobbiesid = item.Hobbiesid;
+                employeeVM.hobbiesName = item.hobbiesName;
+                employeeVM.Address = item.Address;
+                employeeVM.Id = item.Id;
                 empVMList.Add(employeeVM);
             }
 
@@ -74,13 +75,13 @@ namespace CORE05WebApp.Controllers
             List<Hobbiesinf> hobbList = new List<Hobbiesinf>();
             hobbList = _db.Hobbiesinfs.ToList();// (from c in _db.Hobbiesinfs select c).ToList();           
             ViewBag.message1 = hobbList;
-            var items = new Employeedetail() { Joiningdate=System.DateTime.Now };
+            var items = new Employeedetail() { Joiningdate = System.DateTime.Now };
 
-            if (EmpId!=0)
+            if (EmpId != 0)
             {
-                items=_db.Employeedetails.Where(x => x.Id==EmpId).FirstOrDefault();
+                items = _db.Employeedetails.Where(x => x.Id == EmpId).FirstOrDefault();
                 string[] hobbiesArr = items.Hobbiesid.Split(",").ToArray();
-                items.hobbiesArr=hobbiesArr;
+                items.hobbiesArr = hobbiesArr;
             }
             return View(items);
         }
@@ -98,42 +99,53 @@ namespace CORE05WebApp.Controllers
                 Joiningdate = empdetVM.Joiningdate,
                 Gender = empdetVM.Gender,
                 Districtid = empdetVM.Districtid,
+                District = empdetVM.District,
                 Active = empdetVM.Active,
-                Image= fileName,
-                Salary =empdetVM.Salary,
-                Hobbiesid=empdetVM.Hobbiesid,
-                hobbiesName=empdetVM.hobbiesName,
-                Address=empdetVM.Address
+                Image = fileName,
+                Salary = empdetVM.Salary,
+                Hobbiesid = empdetVM.Hobbiesid,
+                hobbiesName = empdetVM.hobbiesName,
+                hobbiesArr = empdetVM.hobbiesArr,
+                Address = empdetVM.Address,
+                Id = empdetVM.Id
             };
 
             if (ModelState.IsValid)
             {
-                if (employee.hobbiesArr!=null)
+                if (employee.hobbiesArr != null)
                 {
                     foreach (var item in employee.hobbiesArr)
                     {
-                        employee.Hobbiesid+=item.Trim()+",";
+                        employee.Hobbiesid += item.Trim() + ",";
                     }
                 }
-                if (employee.Id!=0)
+                if (employee.Id != 0)
                 {
                     _db.Employeedetails.Update(employee);
+                    bool isChanged = Convert.ToBoolean(_db.SaveChanges());
+                    if (isChanged)
+                    {
+                        TempData["success"] = "Employee Updated Successfully";
+                    }
+                    else
+                    {
+                        TempData["error"] = "Employee Updated Failded!";
+                    }
                 }
                 else
                 {
                     _db.Employeedetails.Add(employee);
+                    bool isChanged = Convert.ToBoolean(_db.SaveChanges());
+                    if (isChanged)
+                    {
+                        TempData["success"] = "Employee Inserted Successfully";
+                    }
+                    else
+                    {
+                        TempData["error"] = "Employee Inserted Failded!";
+                    }
                 }
 
-
-                bool isChanged = Convert.ToBoolean(_db.SaveChanges());
-                if (isChanged)
-                {
-                    TempData["success"] = "Employee Inserted Successfully";
-                }
-                else
-                {
-                    TempData["error"] = "Employee Inserted Failded!";
-                }
                 return RedirectToAction("Index");
             }
             return View(employee);
@@ -143,7 +155,7 @@ namespace CORE05WebApp.Controllers
         private string UploadFile(EmployeedetailVM empdetVM)
         {
             string fileName = null;
-            if (empdetVM.ProfileImage!=null)
+            if (empdetVM.ProfileImage != null)
             {
                 string uploadDir = Path.Combine(_webHostEnvironment.WebRootPath, "ProfileImages");
                 fileName = Guid.NewGuid().ToString() + "-" + empdetVM.ProfileImage.FileName;

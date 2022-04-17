@@ -17,13 +17,14 @@ namespace CORE05.Models
         [Display(Name ="Employee Name")]
         [Required(ErrorMessage = "Please Enter Employee Name")]
         public string Employeename { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Joiningdate { get; set; }
         public string Gender { get; set; }
         public int Districtid { get; set; }
         public bool Active { get; set; }
         public string Image { get; set; }
         public decimal Salary { get; set; }
-        public string Hobbiesid { get; set; }
+        public string Hobbiesid { get; set; } = "";
         [NotMapped]
         public string hobbiesName { get; set; }
         [NotMapped]
