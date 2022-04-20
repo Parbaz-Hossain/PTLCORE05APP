@@ -19,7 +19,8 @@ namespace CORE05.ViewModel
         [StringLength(255)]
         [Display(Name = "Employee Name")]
         [Required(ErrorMessage = "Please Enter Employee Name")]
-        public string Employeename { get; set; }    
+        public string Employeename { get; set; }
+        [DataType(DataType.Date)]
         public DateTime Joiningdate { get; set; }
         public string Gender { get; set; }
         public int Districtid { get; set; }

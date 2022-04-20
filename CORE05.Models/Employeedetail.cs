@@ -22,7 +22,7 @@ namespace CORE05.Models
         public string Gender { get; set; }
         public int Districtid { get; set; }
         public bool Active { get; set; }
-        public string Image { get; set; }
+        public string Image { get; set; } = "";
         public decimal Salary { get; set; }
         public string Hobbiesid { get; set; } = "";
         [NotMapped]

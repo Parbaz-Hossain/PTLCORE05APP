@@ -54,6 +54,7 @@ namespace CORE05WebApp.Controllers
                 employeeVM.Active = item.Active;
                 employeeVM.Salary = item.Salary;
                 employeeVM.Hobbiesid = item.Hobbiesid;
+                employeeVM.Image = item.Image;
                 employeeVM.hobbiesName = item.hobbiesName;
                 employeeVM.Address = item.Address;
                 employeeVM.Id = item.Id;
@@ -83,7 +84,24 @@ namespace CORE05WebApp.Controllers
                 string[] hobbiesArr = items.Hobbiesid.Split(",").ToArray();
                 items.hobbiesArr = hobbiesArr;
             }
-            return View(items);
+
+            //EmployeedetailVM empVMList = new EmployeedetailVM;
+            EmployeedetailVM employeeVM = new EmployeedetailVM(); //VeiwModel Object
+            employeeVM.Employeeid = items.Employeeid;
+            employeeVM.Employeename = items.Employeename;
+            employeeVM.Joiningdate = items.Joiningdate;
+            employeeVM.Gender = items.Gender;
+            employeeVM.Districtid = items.Districtid;
+            employeeVM.District = items.District;
+            employeeVM.Active = items.Active;
+            employeeVM.Salary = items.Salary;
+            employeeVM.Hobbiesid = items.Hobbiesid;
+            employeeVM.hobbiesName = items.hobbiesName;
+            employeeVM.Address = items.Address;
+            employeeVM.Id = items.Id;
+            //empVMList.Add(employeeVM);
+
+            return View(employeeVM);
         }
 
         [HttpPost]

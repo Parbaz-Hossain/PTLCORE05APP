@@ -1,4 +1,4 @@
-﻿@model CORE05.Models.Employeedetail
+﻿@model CORE05.ViewModel.EmployeedetailVM
 @{
     ViewData["Title"] = "New Employee";
 }
@@ -35,8 +35,8 @@
             <div class="col-6">
                 <div class="form-group">
                     <label asp-for="Gender">Gender</label>
-                    <input type="radio" asp-for="Gender" name="Gender" value="Male" checked  />&nbsp;Male
-                    <input type="radio" asp-for="Gender" name="Gender" value="Female"  />&nbsp;Female
+                    <input type="radio" asp-for="Gender" name="Gender" value="Male" checked />&nbsp;Male
+                    <input type="radio" asp-for="Gender" name="Gender" value="Female" />&nbsp;Female
                 </div>
             </div>
         </div>
@@ -44,7 +44,7 @@
             <div class="col-6">
                 <div class="form-group">
                     <label asp-for="Districtid">District</label>
-                    <select asp-for="Districtid" asp-items="@(new SelectList(ViewBag.message,"Id","District"))" class="form-control"></select>  
+                    <select asp-for="Districtid" asp-items="@(new SelectList(ViewBag.message,"Id","District"))" class="form-control"></select>
                 </div>
             </div>
             <div class="col-6">
@@ -56,7 +56,7 @@
         </div>
         <div class="row">
             <div class="col-6">
-               <div class="form-group">
+                <div class="form-group">
                     <label asp-for="Address">Address</label>
                     <input type="text" asp-for="Address" class="form-control" />
                 </div>
@@ -77,13 +77,13 @@
             </div>
             <div class="col-6">
                 <div class="form-group">
-                    <label asp-for="Image"></label>
+                    <label>Profile Image</label>
                     <div class="input-group">
                         <div class="input-group-prepend">
                             <span class="input-group-text" id="inputGroupFileAddon01">Upload</span>
                         </div>
                         <div class="custom-file">
-                            <input type="file" asp-for="Image" class="custom-file-input" id="inputGroupFile01"
+                            <input type="file" asp-for="ProfileImage" class="custom-file-input" id="inputGroupFile01"
                                    aria-describedby="inputGroupFileAddon01">
                             <label class="custom-file-label" for="inputGroupFile01">Choose Image</label>
                         </div>
